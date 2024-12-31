@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+pyoptdb = ["schema.sql"]
+
+[project]
+name = "pyoptdb"
+version = "0.1.0"
+authors = [
+  { name="Marvin Meck", email="marvin_maximilian.meck@tu-darmstadt.de" },
+]
+description = "Data management utility for Pyomo users"
+readme = "README.md"
+requires-python = ">=3.10.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Development Status :: Development Status :: 2 - Pre-Alpha",
+    "Operating System :: OS Independent"
+]
+dependencies = [
+    "pyomo==6.7.0",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/marvin-meck/pyoptdb"
+Issues = "https://github.com/marvin-meck/pyoptdb/issues"
+
+[project.scripts]
+pyoptdb = "pyoptdb.cli:main"
