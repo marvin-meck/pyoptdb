@@ -129,7 +129,7 @@ def _insert_into_params(ostream, param: pyo.Param):
     ostream.write(
         "INSERT OR IGNORE INTO parameters(model_id,param_name,description) \n"
         + "VALUES (\n\t(\n\tSELECT model_id FROM models\n\t\tWHERE\n\t\tmodel_name='{}'\n\t),\n\t'{}',\n\t'{}'\n);\n\n".format(
-            param.model().name, param.name, param.doc
+            param.model().name.strip("\'").strip("\""), param.name, param.doc
         )
     )
 
@@ -138,7 +138,7 @@ def _insert_into_sets(ostream, _set: pyo.Set):
     ostream.write(
         "INSERT OR IGNORE INTO sets(model_id,set_name,description) \n"
         + "VALUES (\n\t(\n\tSELECT model_id FROM models\n\t\tWHERE\n\t\tmodel_name='{}'\n\t),\n\t'{}',\n\t'{}'\n);\n\n".format(
-            _set.model().name, _set.name, _set.doc
+            _set.model().name.strip("\'").strip("\""), _set.name, _set.doc
         )
     )
 
@@ -147,7 +147,7 @@ def _insert_into_vars(ostream, var: pyo.Var):
     ostream.write(
         "INSERT OR IGNORE INTO variables(model_id,var_name,description) \n"
         + "VALUES (\n\t(\n\tSELECT model_id FROM models\n\t\tWHERE\n\t\tmodel_name='{}'\n\t),\n\t'{}',\n\t'{}'\n);\n\n".format(
-            var.model().name, var.name, var.doc
+            var.model().name.strip("\'").strip("\""), var.name, var.doc
         )
     )
 
@@ -163,7 +163,7 @@ def _insert_or_ignore_model(
     ostream.write(
         "INSERT OR IGNORE INTO models(model_name,model_class,model_is_convex,description) \n"
         + "VALUES(\n\t'{}',\n\t'{}',\n\t{},\n\t'{}'\n);\n\n".format(
-            model.name, _class, 1 if is_convex else 0, model.doc
+            model.name.strip("\'").strip("\""), _class, 1 if is_convex else 0, model.doc
         )
     )
 
@@ -177,7 +177,7 @@ def _insert_or_ignore_model(
         _insert_into_vars(ostream, getattr(model, name))
 
     _insert_into_files(
-        ostream, filename, "model", _id=model.name, file_archive=file_archive
+        ostream, filename, "model", _id=model.name.strip("\'").strip("\""), file_archive=file_archive
     )
 
 
@@ -188,7 +188,7 @@ def _insert_or_ignore_data_set(
     ostream.write(
         "INSERT OR IGNORE INTO data_sets(data_set_uuid1,model_id) \n"
         + "VALUES(\n\t'{}',\n\t(\n\t\tSELECT model_id from models\n\t\tWHERE model_name='{}'\n\t)\n);\n\n".format(
-            DATA_SET_UUID1, model.name
+            DATA_SET_UUID1, model.name.strip("\'").strip("\"")
         )
     )
 
