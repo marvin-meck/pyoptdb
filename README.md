@@ -1,4 +1,4 @@
-# pyoptdb (Pre-alpha)
+# pyoptdb (alpha)
 
 `pyoptdb` is a data management utility for [Pyomo](https://github.com/marvin-meck/pyomo) users. 
 `pyoptdb` is used to create a disk-based database containing model and solution data. 
