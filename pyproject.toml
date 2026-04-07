@@ -7,7 +7,7 @@ pyoptdb = ["schema.sql"]
 
 [project]
 name = "pyoptdb"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name="Marvin Meck", email="marvin_maximilian.meck@tu-darmstadt.de" },
 ]
